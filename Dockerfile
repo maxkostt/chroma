@@ -28,9 +28,9 @@ COPY --from=builder /install /usr/local
 COPY ./bin/docker_entrypoint.sh /docker_entrypoint.sh
 COPY ./ /chroma
 
-ENV CHROMA_SERVER_AUTH_CREDENTIALS="test-token"
-ENV CHROMA_SERVER_AUTH_CREDENTIALS_PROVIDER="chromadb.auth.token.TokenConfigServerAuthCredentialsProvider"
-ENV CHROMA_SERVER_AUTH_PROVIDER="chromadb.auth.token.TokenAuthServerProvider"
+ENV CHROMA_SERVER_AUTH_CREDENTIALS_FILE="server.htpasswd"
+ENV CHROMA_SERVER_AUTH_CREDENTIALS_PROVIDER='chromadb.auth.providers.HtpasswdFileServerAuthCredentialsProvider'
+ENV CHROMA_SERVER_AUTH_PROVIDER='chromadb.auth.basic.BasicAuthServerProvider'
 
 EXPOSE 8000
 
